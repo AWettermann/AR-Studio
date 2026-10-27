@@ -1,15 +1,7 @@
-# AR Studio Oranienschule V2
+# AR Creator Oranienschule V3
 
-Eigenständige AR-Kreativstation für den Tag der offenen Tür.
+Für GitHub Pages: alle Dateien ins Root des Repositories laden und Pages aktivieren.
 
-## GitHub Pages
-Die Dateien in das Root-Verzeichnis eines GitHub-Repositories hochladen und GitHub Pages für `main / root` aktivieren.
+V3: vier offene Design-Challenges, mehrere Objekte, Position/Größe/Drehung/Farbe, Duplizieren/Löschen, Codeansicht und Übergabe derselben Szene an AR.js mit Hiro-Marker.
 
-## Bedienung
-1. 3D-Grundform wählen
-2. Größe, Drehung und Farbe gestalten
-3. `In AR ansehen`
-4. Kamerazugriff erlauben
-5. Kamera auf einen Hiro-Marker richten
-
-A-Frame und AR.js werden aktuell über CDN geladen. Die veröffentlichte GitHub-Pages-Seite benötigt daher eine Internetverbindung.
+A-Frame und AR.js werden per CDN geladen; die GitHub-Pages-Seite benötigt Internet und HTTPS ermöglicht den Kamerazugriff.

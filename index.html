@@ -1,0 +1,47 @@
+<!doctype html><html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AR Studio · Oranienschule</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="topbar"><a class="brand"><span class="mark">AR</span><span><b>STUDIO</b><small>ORANIENSCHULE · INFORMATIK</small></span></a><div class="status"><i></i> 3D-Entwurf</div></header>
+<main>
+<section class="hero"><p class="eyebrow">AUGMENTED REALITY</p><h1>Bring deine Idee<br>in die echte Welt.</h1><p>Gestalte ein digitales 3D-Objekt. Danach kannst du es mit der Kamera auf einem echten Tisch erscheinen lassen.</p></section>
+<section class="studio">
+ <aside class="tools">
+  <div class="toolhead"><span>01</span><div><b>OBJEKT</b><small>Wähle eine Form</small></div></div>
+  <div class="shapegrid">
+   <button class="shape active" data-shape="box"><span class="mini cube"></span><b>Würfel</b></button>
+   <button class="shape" data-shape="sphere"><span class="mini sphere"></span><b>Kugel</b></button>
+   <button class="shape" data-shape="cone"><span class="mini cone"></span><b>Kegel</b></button>
+   <button class="shape" data-shape="torus"><span class="mini torus"></span><b>Ring</b></button>
+  </div>
+  <div class="divider"></div>
+  <div class="toolhead"><span>02</span><div><b>GESTALTEN</b><small>Verändere dein Objekt</small></div></div>
+  <label class="control"><span>Größe <output id="scaleOut">1.0</output></span><input id="scale" type="range" min=".5" max="1.7" step=".1" value="1"></label>
+  <label class="control"><span>Drehung <output id="rotOut">25°</output></span><input id="rotation" type="range" min="0" max="360" step="5" value="25"></label>
+  <div class="control"><span>Farbe</span><div class="swatches">
+   <button class="swatch active" data-color="#35A9CE" style="--c:#35A9CE" aria-label="Blau"></button>
+   <button class="swatch" data-color="#FFB52E" style="--c:#FFB52E" aria-label="Gelb"></button>
+   <button class="swatch" data-color="#E96657" style="--c:#E96657" aria-label="Rot"></button>
+   <button class="swatch" data-color="#65B77B" style="--c:#65B77B" aria-label="Grün"></button>
+   <button class="swatch" data-color="#8069C9" style="--c:#8069C9" aria-label="Violett"></button>
+  </div></div>
+ </aside>
+ <section class="canvas">
+   <div class="canvasbar"><span>VORSCHAU</span><span class="view">● LIVE</span></div>
+   <div class="scene"><div class="gridfloor"></div><div id="object" class="object3d box"><i></i></div><div class="shadow"></div></div>
+   <div class="hint">Ziehe die Regler links und beobachte, was sich verändert.</div>
+ </section>
+</section>
+<section class="launch">
+ <div><span class="step">03</span><h2>Bereit für die echte Welt?</h2><p>Starte die Kamera und richte dein Gerät auf den Hiro-Marker.</p></div>
+ <button id="startAR" class="arbutton"><span>In AR ansehen</span><i>↗</i></button>
+</section>
+<section class="under">
+ <button id="showCode" class="codebutton">〈/〉 Was steckt dahinter?</button>
+ <div id="codePanel" class="codepanel hidden"><div class="codeintro"><div><b>Dein Entwurf ist Code.</b><p>Diese wenigen Zeilen beschreiben genau das Objekt, das du gerade gestaltet hast.</p></div><button id="closeCode">×</button></div><pre id="code"></pre><div class="learn"><span>HTML</span> beschreibt dein 3D-Objekt. <span>A-Frame</span> baut die Szene. <span>AR.js</span> verbindet sie mit dem Marker in der echten Welt.</div></div>
+</section>
+<section class="how"><p class="eyebrow">SO FUNKTIONIERT AR</p><div class="howgrid"><article><b>01</b><h3>Sehen</h3><p>Die Kamera nimmt die reale Umgebung auf.</p></article><article><b>02</b><h3>Erkennen</h3><p>Der Computer findet den Marker und berechnet seine Lage.</p></article><article><b>03</b><h3>Verbinden</h3><p>Das 3D-Objekt wird passend über das Kamerabild gelegt.</p></article></div></section>
+</main>
+<div id="arOverlay" class="overlay hidden"><iframe id="arFrame" allow="camera; fullscreen; xr-spatial-tracking"></iframe><div class="arhead"><div><b>AR STUDIO</b><small>Richte die Kamera auf den Hiro-Marker</small></div><button id="closeAR">Beenden ×</button></div><div class="arhint"><b>Marker nicht sichtbar?</b> Halte ihn flach, vollständig im Bild und gut beleuchtet.</div></div>
+<footer><b>AR STUDIO</b><span>ORANIENSCHULE · TAG DER OFFENEN TÜR</span></footer>
+<script src="app.js"></script></body></html>

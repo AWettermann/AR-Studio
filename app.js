@@ -4,6 +4,6 @@
 $("arBtn").onclick=()=>{
   if(!objs.length){alert("Füge zuerst ein Bauteil hinzu.");return}
   saveScene();
-  window.location.href="ar.html";
+  window.location.href="ar.html?v=3.3";
 };
 })();

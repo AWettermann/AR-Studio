@@ -1,31 +1,26 @@
-# AR Creator Oranienschule V3.1 – Hiro-Diagnose
+# AR Creator Oranienschule V3.3 – iPad Diagnose
 
-Diese Version trennt Editor und AR vollständig.
+V3.3 dient ausschließlich dazu, den AR-Ablauf auf dem iPad eindeutig zu prüfen.
 
-## GitHub Pages
-Alle Dateien in das Root-Verzeichnis des Repositorys laden:
-- index.html
-- style.css
-- app.js
-- ar.html
+## Auf dem iPad muss sichtbar sein
+Oben: `AR CREATOR TEST 3.3`
 
-Dann GitHub Pages aktivieren und **über die HTTPS-Adresse** öffnen.
+Unten ein großer Statusbalken:
+- VERSION 3.3 ✓
+- KAMERA ✓
+- HIRO ✓ (sobald Marker erkannt)
+- SZENE n (Anzahl der vom Creator übernommenen Objekte)
 
-## Testablauf
-1. Im Creator ein Objekt hinzufügen.
-2. `Meine Welt in AR` wählen.
-3. Kamerazugriff erlauben.
-4. Auf `ar.html` links die Diagnose beobachten:
-   - AR.js geladen
-   - Kamera bereit
-   - Hiro erkannt
-5. Kamera auf einen ausgedruckten Hiro-Marker richten.
+Auf dem Marker:
+- links: blauer Referenzball mit `TEST`
+- rechts: Creator-Szene mit `DEINE SZENE`
 
-Auf dem Hiro-Marker erscheint absichtlich zusätzlich ein großer rotierender GELBER WÜRFEL.
-Damit lässt sich die reine Marker-Erkennung unabhängig von der selbst erstellten Szene testen.
+Der Editor öffnet `ar.html?v=3.3`, um ältere zwischengespeicherte Versionen möglichst zu umgehen.
 
-Wenn `AR.js geladen` und `Kamera bereit` grün sind, aber `Hiro erkannt` rot bleibt,
-liegt das Problem bei Marker/Erkennung und nicht beim Editor.
-
-Wichtig: Nicht die lokale file://-Adresse für den eigentlichen Smartphone-Test verwenden.
-GitHub Pages liefert HTTPS und ist dafür die vorgesehene Testumgebung.
+## Test
+1. V3.3 vollständig auf GitHub Pages hochladen.
+2. Auf dem iPad die GitHub-Pages-Seite neu öffnen.
+3. Im Creator 2–3 Objekte hinzufügen.
+4. `Meine Welt in AR` wählen.
+5. Hiro scannen.
+6. Den unteren Statusbalken ablesen.

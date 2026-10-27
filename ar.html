@@ -17,18 +17,29 @@ a-scene{position:fixed!important;inset:0!important}
 .detected{position:fixed;z-index:20;left:50%;top:50%;transform:translate(-50%,-50%);background:#ffbf3f;color:#312308;padding:14px 20px;font-weight:900;font-size:1.1rem;box-shadow:0 8px 30px #0004;opacity:0;transition:.2s;pointer-events:none}.detected.show{opacity:1}
 .help{position:fixed;z-index:20;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);background:#fffffff0;padding:10px 14px;text-align:center;font-size:.78rem;max-width:92%;min-width:min(520px,92%)}
 #error{color:#ffd270;margin-top:5px;display:none}
+.version{background:#ffb52d;color:#2b2008;padding:3px 7px;margin-left:6px}
+.bottomStatus{position:fixed;z-index:30;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));background:#102129f2;color:#fff;padding:12px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;text-align:center;font-size:.72rem;font-weight:900;box-shadow:0 4px 20px #0005}
+.bottomStatus span{padding:7px 3px;background:#263940}.bottomStatus span.ok{background:#247844}.bottomStatus b{display:block;font-size:.55rem;letter-spacing:.08em;margin-bottom:3px;color:#c7d4d8}.help{bottom:82px!important}
+@media(max-width:700px){.status{display:none}.top{font-size:.8rem}.top strong{background:#ffb52d;color:#2b2008;padding:3px 6px}.bottomStatus{font-size:.68rem}}
 </style>
 </head>
 <body>
-<div class="top"><div><b>AR CREATOR</b><small>Hiro-Test · Oranienschule</small></div><button onclick="history.back()">← Zurück</button></div>
+<div class="top"><div><b>AR CREATOR <strong>TEST 3.3</strong></b><small>iPad-Diagnose · Referenz + Creator-Szene</small></div><button onclick="history.back()">← Zurück</button></div>
 <div class="status">
  <div><i id="libLamp" class="lamp"></i><span>AR.js geladen</span></div>
  <div><i id="camLamp" class="lamp"></i><span>Kamera bereit</span></div>
  <div><i id="markerLamp" class="lamp"></i><span>Hiro erkannt</span></div>
+ <div><i id="sceneLamp" class="lamp"></i><span id="sceneStatus">Creator-Szene: 0 Objekte</span></div>
  <div id="error"></div>
 </div>
 <div id="detected" class="detected">✓ HIRO ERKANNT</div>
-<div class="help"><b>Test:</b> Richte die Kamera auf den Hiro-Marker. Halte den kompletten schwarzen Rahmen sichtbar und möglichst flach.</div>
+<div class="bottomStatus">
+ <span id="bsVersion" class="ok"><b>VERSION</b>3.3 ✓</span>
+ <span id="bsCam"><b>KAMERA</b>…</span>
+ <span id="bsMarker"><b>HIRO</b>…</span>
+ <span id="bsScene"><b>SZENE</b>0</span>
+</div>
+<div class="help"><b>Referenz:</b> Links muss der blaue Ball erscheinen. Rechts daneben sollte deine im Creator gebaute Szene sichtbar werden.</div>
 
 <a-scene id="scene"
  embedded
@@ -36,9 +47,10 @@ a-scene{position:fixed!important;inset:0!important}
  renderer="logarithmicDepthBuffer:true; antialias:true; alpha:true"
  arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono; matrixCodeType: 3x3;">
  <a-marker id="hiro" preset="hiro" emitevents="true">
-   <a-box id="testCube" position="0 0.5 0" width="1" height="1" depth="1" color="#FFB52D"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 5000"></a-box>
-   <a-entity id="userWorld" scale=".48 .48 .48"></a-entity>
+   <a-sphere id="referenceBall" position="-0.9 0.38 0" radius=".38" color="#2CA8CC"></a-sphere>
+   <a-text value="TEST" position="-1.32 1.05 0" rotation="-90 0 0" color="#2CA8CC" width="3" align="center"></a-text>
+   <a-entity id="userWorld" position=".75 0 0" scale=".42 .42 .42"></a-entity>
+   <a-text value="DEINE SZENE" position=".2 1.05 0" rotation="-90 0 0" color="#FFB52D" width="3.5" align="center"></a-text>
  </a-marker>
  <a-entity camera></a-entity>
 </a-scene>
@@ -58,14 +70,14 @@ a-scene{position:fixed!important;inset:0!important}
  try{objects=raw?JSON.parse(raw):[]}catch(e){fail("Gespeicherte Szene konnte nicht gelesen werden.")}
 
  function primitive(o){
-   const c=o.c||"#2CA8CC", x=Number(o.x)||0, z=Number(o.z)||0, s=Number(o.s)||1, r=Number(o.r)||0;
+   const c=o.c||"#2CA8CC", x=(Number(o.x)||0)*0.7, z=(Number(o.z)||0)*0.7, s=(Number(o.s)||1)*0.9, r=Number(o.r)||0;
    let el;
    if(o.type==="sphere"||o.type==="planet"){el=document.createElement("a-sphere");el.setAttribute("radius",".4")}
    else if(o.type==="cone"||o.type==="rocket"||o.type==="tree"){el=document.createElement("a-cone");el.setAttribute("radius-bottom",".4");el.setAttribute("radius-top","0");el.setAttribute("height",".8")}
    else if(o.type==="ring"){el=document.createElement("a-torus");el.setAttribute("radius",".4");el.setAttribute("radius-tubular",".12")}
    else if(o.type==="dish"){el=document.createElement("a-cylinder");el.setAttribute("radius",".32");el.setAttribute("height",".55")}
    else {el=document.createElement("a-box");el.setAttribute("width",".65");el.setAttribute("height",".65");el.setAttribute("depth",".65")}
-   el.setAttribute("position",`${x} .4 ${z}`);
+   el.setAttribute("position",`${x} .45 ${z}`);
    el.setAttribute("rotation",`0 ${r} 0`);
    el.setAttribute("scale",`${s} ${s} ${s}`);
    el.setAttribute("color",c);
@@ -74,15 +86,30 @@ a-scene{position:fixed!important;inset:0!important}
  const world=document.getElementById("userWorld");
  objects.forEach(o=>world.appendChild(primitive(o)));
 
- // Keep yellow cube visible as independent diagnostic; shift user's world slightly back.
- if(objects.length) world.setAttribute("position","0 0 -1.25");
+ // Creator transfer diagnostic
+ const sceneStatus=document.getElementById("sceneStatus");
+ sceneStatus.textContent=`Creator-Szene: ${objects.length} ${objects.length===1?"Objekt":"Objekte"}`;
+ document.getElementById("bsScene").innerHTML=`<b>SZENE</b>${objects.length}`;
+ if(objects.length){
+   lamp("sceneLamp").classList.add("ok");
+   document.getElementById("bsScene").classList.add("ok");
+ } else {
+   fail("Keine Creator-Objekte empfangen. Gehe zurück, füge ein Objekt hinzu und starte AR erneut.");
+ }
 
  const marker=document.getElementById("hiro"), badge=document.getElementById("detected");
  marker.addEventListener("markerFound",()=>{
-   lamp("markerLamp").classList.add("ok"); badge.classList.add("show");
+   lamp("markerLamp").classList.add("ok");
+   document.getElementById("bsMarker").classList.add("ok");
+   document.getElementById("bsMarker").innerHTML="<b>HIRO</b>✓";
+   badge.classList.add("show");
    setTimeout(()=>badge.classList.remove("show"),1200);
  });
- marker.addEventListener("markerLost",()=>lamp("markerLamp").classList.remove("ok"));
+ marker.addEventListener("markerLost",()=>{
+   lamp("markerLamp").classList.remove("ok");
+   document.getElementById("bsMarker").classList.remove("ok");
+   document.getElementById("bsMarker").innerHTML="<b>HIRO</b>…";
+ });
 
  // Camera/video diagnostic. AR.js creates a video element asynchronously.
  let tries=0;
@@ -90,7 +117,10 @@ a-scene{position:fixed!important;inset:0!important}
    tries++;
    const v=document.querySelector("video");
    if(v && v.readyState>=2){
-     lamp("camLamp").classList.add("ok"); clearInterval(timer);
+     lamp("camLamp").classList.add("ok");
+     document.getElementById("bsCam").classList.add("ok");
+     document.getElementById("bsCam").innerHTML="<b>KAMERA</b>✓";
+     clearInterval(timer);
    } else if(tries>40){
      clearInterval(timer);
      fail("Keine Kameradaten. Prüfe die Kameraberechtigung und öffne die Seite über HTTPS.");

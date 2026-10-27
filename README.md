@@ -1,26 +1,19 @@
-# AR Creator Oranienschule V3.3 – iPad Diagnose
+# AR Creator Oranienschule V4
 
-V3.3 dient ausschließlich dazu, den AR-Ablauf auf dem iPad eindeutig zu prüfen.
+V4 stellt Editor und AR auf dieselbe 3D-Modellbibliothek (`models.js`) um.
 
-## Auf dem iPad muss sichtbar sein
-Oben: `AR CREATOR TEST 3.3`
+## Kernprinzip
+WYSIWYG: Rakete, Roboter, Gebäude, Baum, Antenne, Planet usw. werden im Editor und in AR aus exakt derselben Modelldefinition erzeugt.
 
-Unten ein großer Statusbalken:
-- VERSION 3.3 ✓
-- KAMERA ✓
-- HIRO ✓ (sobald Marker erkannt)
-- SZENE n (Anzahl der vom Creator übernommenen Objekte)
+## GitHub Pages
+Alle fünf Webdateien ins Root des Repositorys laden:
+- index.html
+- style.css
+- app.js
+- models.js
+- ar.html
 
-Auf dem Marker:
-- links: blauer Referenzball mit `TEST`
-- rechts: Creator-Szene mit `DEINE SZENE`
+GitHub Pages aktivieren und über HTTPS öffnen.
 
-Der Editor öffnet `ar.html?v=3.3`, um ältere zwischengespeicherte Versionen möglichst zu umgehen.
-
-## Test
-1. V3.3 vollständig auf GitHub Pages hochladen.
-2. Auf dem iPad die GitHub-Pages-Seite neu öffnen.
-3. Im Creator 2–3 Objekte hinzufügen.
-4. `Meine Welt in AR` wählen.
-5. Hiro scannen.
-6. Den unteren Statusbalken ablesen.
+## Modelle
+Die Modelle bestehen bewusst aus A-Frame-Primitiven. Dadurch gibt es keine externen GLB-Abhängigkeiten und Editor/AR bleiben synchron.
